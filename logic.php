@@ -2,16 +2,16 @@
 
 $symbols = ['$','#','@','!','*','&','^','%'];
 
-$wordslength = count($words);
+$input = array("Neo", "Morpheus", "Trinity", "Cypher", "Tank");
 
-
-$randomwords = array_rand($words,($_GET(numwords)));
+$wordslength = count($input);
 
 $password = 'hello Horse Brown Boxes';
 
 
 
 if (empty($_GET)) $password = 'Girls candy running sword';
+else{$password = array_rand($input,($_GET(numwords))) }
    if(isset($_GET['num']))
       $password .= rand(0,9);
    if(isset($_GET['symbol']))
