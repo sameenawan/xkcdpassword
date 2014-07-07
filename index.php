@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +8,7 @@
 
 	<link rel='stylesheet' href='' type='text/css'>
 
-	<?php require 'logic.php'; ?>
+	<?php include 'logic.php'; ?>
 
 </head>
 <body>
@@ -39,6 +40,25 @@
 <p>The logic of an XKCD Password</p>
 <img src="password_strength.png" alt = 'XKCD password generator comic'>
 	
+
+
+<?php
+
+				$dictionary = fopen(http://www-01.sil.org/linguistics/wordlists/english/wordlist/wordsEn.txt, "r");
+
+				for ($i = 0; $i = 4; $i++)
+				{
+					${"word" . $i} = fgets($dictionary);
+					print ${"word" . $i};
+					if ($i < 3)
+					{
+						print "-";
+					}
+				}
+
+?>
+
+
 
 
 
