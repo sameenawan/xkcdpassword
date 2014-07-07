@@ -42,22 +42,6 @@
 	
 
 
-<?php
-
-				$dictionary = fopen(http://www-01.sil.org/linguistics/wordlists/english/wordlist/wordsEn.txt, "r");
-
-				for ($i = 0; $i = 4; $i++)
-				{
-					${"word" . $i} = fgets($dictionary);
-					print ${"word" . $i};
-					if ($i < 3)
-					{
-						print "-";
-					}
-				}
-
-?>
-
 
 
 
