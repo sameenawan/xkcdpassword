@@ -1,7 +1,7 @@
 <?php
  
 function xkcd_password_generator() {
-  $lines = file('/usr/share/dict/words', FILE_IGNORE_NEW_LINES);
+  $lines = file('words', FILE_IGNORE_NEW_LINES);
   $length = count($lines);
   $pw = '';
  
