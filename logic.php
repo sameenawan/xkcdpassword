@@ -1,7 +1,7 @@
 <?php
 
 $symbols = ['$','#','@','!','*','&','^','%'];
-$words = ['math','green','brown','foxy'];
+
 $wordslength = count($words);
 
 
