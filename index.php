@@ -1,31 +1,62 @@
-<?php
-	// let's have access to the session variables
-	session_start();
-	// bring in our constants which we've defined in another file
-	require('constants.php');
-	// bring in our functions which we've defined in another file
-	require('functions.php');
-?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CS15 - Summer 2014 - Week 2 exercise</title>
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>    
+
+	<title>P2 XKCD Password Generator</title>
+	<meta charset="utf-8">
+	// <?php require 'logic.php'; ?>
+
+</head>
+
 <body>
 
-	<form method="post" action="/index.php">
-		Number of students: <input type="text" name="no_of_students"><br />
-		<input type="submit" />
-	</form>
- 	<p>The number of students is <?php echo show_student_count(); ?></p>
-	<?php
-		// get average once to avoid variance. Each call to returnAverage may be unique.
-		$average = returnAverage();
-	?>
-	<p>The average students grade is <span class="<?php echo getAverageStyle($average); ?>"><?php echo $average; ?></span></p>
 
-	<a href="session.php">Go to page that shows how session variables are accessible from another page</a><br />
-	<a href="get.php?class_average=<?php echo $average; ?>">Go to page that shows how variables are passed by query string</a>
-</body>
+<?php
+// check if form has been submitted
+if (isset($_GET['generate'])) {
+	// how many words requested - default value is 4
+	$howManyWords=$_GET['howManyWords'];
+	// check if we should include characters or digits - default value is true
+	$includeCharacters=$_GET['includeCharacters'];
+	// store the dictionary file into an array
+	$dictionary = file('dictionary.txt');
+	// pull a random key from the dictionary array
+	$randomKey = array_rand($dictionary, $howManyWords);
+	// loop over the number of words requested
+	for ($i=0;$i<$howManyWords;$i++) {
+		// bold odd numbered words to increase readability
+		if ($i % 2 == 1) {	
+			// trim space from the word in case there is space
+			$randomStr .= "<strong>".trim($dictionary[$randomKey[$i]])."</strong>";
+		} else {
+			$randomStr .= trim($dictionary[$randomKey[$i]]);
+		}
+	}
+	if ($includeCharacters=="yes") {
+		// pull random digit or symbol from this string
+		$characters="1234567890!@#$%^&*()_+";
+		$randomChar = $characters[rand(0, strlen($characters)-1)];
+		$randomStr.=$randomChar;
+	}
+	// output
+	echo $randomStr;
+} else {
+	echo "<form>";
+	echo "<input type='hidden' name='generate' />";
+		echo "<table>";
+			echo "<tr>";
+				echo "<td>How Many Words?</td>";
+				echo "<td><input type='text' name='howManyWords' value='4'/></td>";
+			echo "</tr>";
+				echo "<td><div align='right'><input type='checkbox' name='includeCharacters' value='yes' checked/></div></td>";
+				echo "<td>Include Characters in the Password?</td>";		
+			echo "<tr>";
+				echo "<td colspan='2' align='right'><input type='submit' value='Generate Random Password'/></td>";
+			echo "</tr>";						
+		echo "</table>";
+	echo "</form>";
+}
+?>
+		
+	</body>
 </html>
